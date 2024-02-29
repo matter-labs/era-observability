@@ -14,3 +14,8 @@ This section goes through a simple setup for a local deployment.
 Voila! You should see some data displayed in Grafana now.
 
 If some charts do not work please raise an issue in this repo. 
+
+## Dashboards
+
+* **General** - one pager high level overview of L1/L2 blockchains and L2 APIs;
+* TODO: add others
