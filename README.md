@@ -1,20 +1,19 @@
 # Era Observability
 
-This repository contains json sources for Grafana dashboards that are used to observe `ZKSync Era` as well as can be used for any other hyperchain deployment. Dashboards are regularly updated.   
+This repository contains json sources for Grafana dashboards that are used to observe `zkSync Era` as well as can be 
+used for any other Hyperchain / External Node deployment. The dashboards are regularly updated.   
 
 ## How to use
 
-This section goes through a simple setup for a local deployment.
+The easiest way to try out the dashboards in a development environment is via `--run-observability` flag
+that can be specified for `zk init` and `zk stack init` commands 
+([docs](https://github.com/matter-labs/zksync-era/blob/main/docs/guides/launch.md#run-observability-stack)). 
 
-1. Setup your local environment and start services as described [here](https://github.com/matter-labs/zksync-era/blob/main/docs/guides/launch.md). `zk init` and `zk server` is enough for the matter of this exercise; 
-2. Setup local Prometheus + Grafana, for example using [Dockprom](https://github.com/stefanprodan/dockprom);
-3. Open the Grafana UI (`http://127.0.0.1:3000/` if you used `Dockprom`) and import the dashboards via regular json import;
-4. (Optionally) run the integration tests via `zk test i server` to generate some transactions.
+Alternatively the dashboards can be imported as-is via the Grafana JSON importer. 
 
-Voila! You should see some data displayed in Grafana now.
-
-If some charts do not work please raise an issue in this repo. 
+> Note: some panels might be empty, depending on whether you are running a full Hyperchain or External Node.   
 
 ## Dashboards
 
 * **General** - one pager high level overview of L1/L2 blockchains and L2 APIs;
+* **Sequencer** - detailed sequencer-related metrics.
