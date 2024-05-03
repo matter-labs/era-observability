@@ -1237,6 +1237,112 @@
         "type": "prometheus",
         "uid": "${datasource}"
       },
+      "description": "Number of transactions rejected in State Keeper. They waste the Sequencer resources without paying fee, so high number of them is indicative of a bug or a DoS attack",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "bars",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "smooth",
+            "lineStyle": {
+              "fill": "solid"
+            },
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "never",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "normal"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "links": [
+            {
+              "title": "State Keeper dashboard",
+              "url": "https://grafana.matterlabs.dev/d/CDTuChL4z/era-state-keeper?orgId=1"
+            }
+          ],
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 0,
+        "y": 25
+      },
+      "id": 14591,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": false
+        },
+        "tooltip": {
+          "mode": "multi",
+          "sort": "none"
+        }
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${datasource}"
+          },
+          "editorMode": "code",
+          "exemplar": false,
+          "expr": "sum(rate(server_state_keeper_rejected_transactions{namespace=~\"$namespace|\"}[$__rate_interval]))",
+          "hide": false,
+          "legendFormat": "__auto",
+          "range": true,
+          "refId": "B"
+        }
+      ],
+      "title": "Transactions rejected in State Keeper",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${datasource}"
+      },
       "description": "",
       "fieldConfig": {
         "defaults": {
@@ -1373,34 +1479,7 @@
           },
           "unit": "s"
         },
-        "overrides": [
-          {
-            "__systemRef": "hideSeriesFrom",
-            "matcher": {
-              "id": "byNames",
-              "options": {
-                "mode": "exclude",
-                "names": [
-                  "average-external-node-0",
-                  "average-external-node-moby-0",
-                  "average-server-v2-core-0"
-                ],
-                "prefix": "All except:",
-                "readOnly": true
-              }
-            },
-            "properties": [
-              {
-                "id": "custom.hideFrom",
-                "value": {
-                  "legend": false,
-                  "tooltip": false,
-                  "viz": true
-                }
-              }
-            ]
-          }
-        ]
+        "overrides": []
       },
       "gridPos": {
         "h": 8,
@@ -2316,7 +2395,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               },
               {
                 "color": "red",
@@ -2591,7 +2671,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               },
               {
                 "color": "red",
@@ -2707,7 +2788,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               },
               {
                 "color": "red",
@@ -2969,7 +3051,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               },
               {
                 "color": "red",
@@ -3099,7 +3182,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               },
               {
                 "color": "red",
@@ -3218,7 +3302,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               },
               {
                 "color": "red",
@@ -3455,7 +3540,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               },
               {
                 "color": "red",
@@ -3561,7 +3647,7 @@
             "h": 8,
             "w": 6,
             "x": 0,
-            "y": 76
+            "y": 84
           },
           "id": 1091,
           "options": {
@@ -3682,7 +3768,7 @@
             "h": 8,
             "w": 6,
             "x": 6,
-            "y": 76
+            "y": 84
           },
           "id": 12519,
           "options": {
@@ -3746,7 +3832,7 @@
             "h": 8,
             "w": 6,
             "x": 12,
-            "y": 76
+            "y": 84
           },
           "heatmap": {},
           "hideZeroBuckets": true,
@@ -3936,7 +4022,7 @@
             "h": 8,
             "w": 6,
             "x": 18,
-            "y": 76
+            "y": 84
           },
           "id": 1087,
           "options": {
@@ -4057,7 +4143,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               },
               {
                 "color": "red",
@@ -4220,7 +4307,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               },
               {
                 "color": "red",
@@ -4315,7 +4403,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               },
               {
                 "color": "red",
@@ -4410,7 +4499,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               },
               {
                 "color": "red",
@@ -4604,7 +4694,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               },
               {
                 "color": "red",
@@ -4699,7 +4790,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               },
               {
                 "color": "red",
@@ -4794,7 +4886,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               },
               {
                 "color": "red",
@@ -4917,7 +5010,7 @@
             "h": 8,
             "w": 8,
             "x": 0,
-            "y": 85
+            "y": 93
           },
           "id": 11422,
           "options": {
@@ -5038,7 +5131,7 @@
             "h": 8,
             "w": 8,
             "x": 8,
-            "y": 85
+            "y": 93
           },
           "id": 13422,
           "options": {
@@ -5159,7 +5252,7 @@
             "h": 8,
             "w": 8,
             "x": 16,
-            "y": 85
+            "y": 93
           },
           "id": 12087,
           "options": {
@@ -5250,7 +5343,7 @@
             "h": 7,
             "w": 8,
             "x": 0,
-            "y": 93
+            "y": 101
           },
           "heatmap": {},
           "hideZeroBuckets": true,
@@ -5389,7 +5482,7 @@
             "h": 7,
             "w": 8,
             "x": 8,
-            "y": 93
+            "y": 101
           },
           "heatmap": {},
           "hideZeroBuckets": true,
@@ -5528,7 +5621,7 @@
             "h": 7,
             "w": 8,
             "x": 16,
-            "y": 93
+            "y": 101
           },
           "heatmap": {},
           "hideZeroBuckets": true,
@@ -5644,7 +5737,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 107
+        "y": 115
       },
       "id": 11724,
       "panels": [
@@ -5712,7 +5805,7 @@
             "h": 8,
             "w": 6,
             "x": 0,
-            "y": 90
+            "y": 98
           },
           "id": 10728,
           "options": {
@@ -5832,7 +5925,7 @@
             "h": 8,
             "w": 6,
             "x": 6,
-            "y": 90
+            "y": 98
           },
           "id": 11897,
           "options": {
@@ -5952,7 +6045,7 @@
             "h": 8,
             "w": 6,
             "x": 12,
-            "y": 90
+            "y": 98
           },
           "id": 11869,
           "options": {
@@ -6015,7 +6108,7 @@
       "type": "row"
     }
   ],
-  "refresh": false,
+  "refresh": "",
   "revision": 1,
   "schemaVersion": 39,
   "tags": [
@@ -6207,6 +6300,6 @@
   "timezone": "",
   "title": "Era - sequencer",
   "uid": "CDTuChL4z",
-  "version": 180,
+  "version": 181,
   "weekStart": ""
 }
