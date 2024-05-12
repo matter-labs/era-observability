@@ -2919,7 +2919,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 58
+        "y": 83
       },
       "id": 13300,
       "panels": [],
@@ -2927,6 +2927,272 @@
       "repeatDirection": "h",
       "title": "L1 batch sealing - $pod",
       "type": "row"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${datasource}"
+      },
+      "description": "Sealing L1 batch consist of multiple stages - this graph shows how much each stage impact the total time it takes to seal a batch",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "bars",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "percent"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 6,
+        "x": 0,
+        "y": 84
+      },
+      "id": 13820,
+      "interval": "30s",
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "mode": "multi",
+          "sort": "desc"
+        }
+      },
+      "pluginVersion": "9.4.7",
+      "targets": [
+        {
+          "alias": "",
+          "bucketAggs": [
+            {
+              "field": "timestamp",
+              "id": "2",
+              "settings": {
+                "interval": "auto"
+              },
+              "type": "date_histogram"
+            }
+          ],
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${datasource}"
+          },
+          "editorMode": "code",
+          "exemplar": true,
+          "expr": "sum by (stage) (increase(server_state_keeper_l1_batch_sealed_time_stage_sum{namespace=~\"$namespace|\", pod=~\"$pod|\"}[$__rate_interval]) / increase(server_state_keeper_l1_batch_sealed_time_stage_count{namespace=~\"$namespace|\", pod=~\"$pod|\"}[$__rate_interval]))",
+          "interval": "",
+          "legendFormat": "{{stage}}",
+          "metrics": [
+            {
+              "id": "1",
+              "type": "count"
+            }
+          ],
+          "query": "",
+          "range": true,
+          "refId": "A",
+          "timeField": "timestamp"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${datasource}"
+          },
+          "editorMode": "code",
+          "expr": "sum by (stage) (increase(server_state_keeper_wait_for_prev_hash_time_sum{namespace=~\"$namespace|\", pod=~\"$pod|\"}[$__rate_interval]) / increase(server_state_keeper_wait_for_prev_hash_time_count{namespace=~\"$namespace|\", pod=~\"$pod|\"}[$__rate_interval]))",
+          "hide": false,
+          "instant": false,
+          "legendFormat": "waiting_for_tree",
+          "range": true,
+          "refId": "B"
+        }
+      ],
+      "title": "L1 batch Seal Stages Time - scaled",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${datasource}"
+      },
+      "description": "Sealing L1 batch consist of multiple stages - this graph shows how much each stage impact the total time it takes to seal a batch",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "bars",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "normal"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "s"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 18,
+        "x": 6,
+        "y": 84
+      },
+      "id": 14699,
+      "options": {
+        "legend": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "displayMode": "table",
+          "placement": "right",
+          "showLegend": true,
+          "sortBy": "Last *",
+          "sortDesc": true
+        },
+        "tooltip": {
+          "mode": "none",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "9.4.7",
+      "targets": [
+        {
+          "alias": "",
+          "bucketAggs": [
+            {
+              "field": "timestamp",
+              "id": "2",
+              "settings": {
+                "interval": "auto"
+              },
+              "type": "date_histogram"
+            }
+          ],
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${datasource}"
+          },
+          "editorMode": "code",
+          "exemplar": true,
+          "expr": "sum by (stage) (increase(server_state_keeper_l1_batch_sealed_time_stage_sum{namespace=~\"$namespace|\", pod=~\"$pod|\"}[$__rate_interval]) / increase(server_state_keeper_l1_batch_sealed_time_stage_count{namespace=~\"$namespace|\", pod=~\"$pod|\"}[$__rate_interval]))",
+          "interval": "",
+          "legendFormat": "{{stage}}",
+          "metrics": [
+            {
+              "id": "1",
+              "type": "count"
+            }
+          ],
+          "query": "",
+          "range": true,
+          "refId": "A",
+          "timeField": "timestamp"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${datasource}"
+          },
+          "editorMode": "code",
+          "expr": "sum by (stage) (increase(server_state_keeper_wait_for_prev_hash_time_sum{namespace=~\"$namespace|\", pod=~\"$pod|\"}[$__rate_interval]) / increase(server_state_keeper_wait_for_prev_hash_time_count{namespace=~\"$namespace|\", pod=~\"$pod|\"}[$__rate_interval]))",
+          "hide": false,
+          "instant": false,
+          "legendFormat": "waiting_for_tree",
+          "range": true,
+          "refId": "B"
+        }
+      ],
+      "title": "L1 batch Seal Stages Time - absolute",
+      "type": "timeseries"
     },
     {
       "datasource": {
@@ -2992,7 +3258,7 @@
         "h": 8,
         "w": 6,
         "x": 0,
-        "y": 59
+        "y": 92
       },
       "id": 47,
       "options": {
@@ -3122,7 +3388,7 @@
         "h": 8,
         "w": 6,
         "x": 6,
-        "y": 59
+        "y": 92
       },
       "id": 81,
       "options": {
@@ -3312,480 +3578,6 @@
         "type": "prometheus",
         "uid": "${datasource}"
       },
-      "description": "Sealing L1 batch consist of multiple stages - this graph shows how much each stage impact the total time it takes to seal a batch",
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "palette-classic"
-          },
-          "custom": {
-            "axisBorderShow": false,
-            "axisCenteredZero": false,
-            "axisColorMode": "text",
-            "axisLabel": "",
-            "axisPlacement": "auto",
-            "barAlignment": 0,
-            "drawStyle": "bars",
-            "fillOpacity": 0,
-            "gradientMode": "none",
-            "hideFrom": {
-              "legend": false,
-              "tooltip": false,
-              "viz": false
-            },
-            "insertNulls": false,
-            "lineInterpolation": "linear",
-            "lineWidth": 1,
-            "pointSize": 5,
-            "scaleDistribution": {
-              "type": "linear"
-            },
-            "showPoints": "auto",
-            "spanNulls": false,
-            "stacking": {
-              "group": "A",
-              "mode": "percent"
-            },
-            "thresholdsStyle": {
-              "mode": "off"
-            }
-          },
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": null
-              },
-              {
-                "color": "red",
-                "value": 80
-              }
-            ]
-          }
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 8,
-        "w": 6,
-        "x": 12,
-        "y": 59
-      },
-      "id": 13820,
-      "interval": "30s",
-      "options": {
-        "legend": {
-          "calcs": [],
-          "displayMode": "list",
-          "placement": "bottom",
-          "showLegend": true
-        },
-        "tooltip": {
-          "mode": "single",
-          "sort": "none"
-        }
-      },
-      "pluginVersion": "9.4.7",
-      "targets": [
-        {
-          "alias": "",
-          "bucketAggs": [
-            {
-              "field": "timestamp",
-              "id": "2",
-              "settings": {
-                "interval": "auto"
-              },
-              "type": "date_histogram"
-            }
-          ],
-          "datasource": {
-            "type": "prometheus",
-            "uid": "${datasource}"
-          },
-          "editorMode": "code",
-          "exemplar": true,
-          "expr": "sum by (stage) (increase(server_state_keeper_l1_batch_sealed_time_stage_sum{namespace=~\"$namespace|\", pod=~\"$pod|\"}[$__rate_interval]) / increase(server_state_keeper_l1_batch_sealed_time_stage_count{namespace=~\"$namespace|\", pod=~\"$pod|\"}[$__rate_interval]))",
-          "interval": "",
-          "legendFormat": "{{stage}}",
-          "metrics": [
-            {
-              "id": "1",
-              "type": "count"
-            }
-          ],
-          "query": "",
-          "range": true,
-          "refId": "A",
-          "timeField": "timestamp"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "${datasource}"
-          },
-          "editorMode": "code",
-          "expr": "sum by (stage) (increase(server_state_keeper_wait_for_prev_hash_time_sum{namespace=~\"$namespace|\", pod=~\"$pod|\"}[$__rate_interval]) / increase(server_state_keeper_wait_for_prev_hash_time_count{namespace=~\"$namespace|\", pod=~\"$pod|\"}[$__rate_interval]))",
-          "hide": false,
-          "instant": false,
-          "legendFormat": "waiting_for_tree",
-          "range": true,
-          "refId": "B"
-        }
-      ],
-      "title": "L1 batch Seal Stages Time - scaled",
-      "type": "timeseries"
-    },
-    {
-      "datasource": {
-        "type": "prometheus",
-        "uid": "${datasource}"
-      },
-      "description": "Sealing L1 batch consist of multiple stages - this graph shows how much each stage impact the total time it takes to seal a batch",
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "palette-classic"
-          },
-          "custom": {
-            "axisBorderShow": false,
-            "axisCenteredZero": false,
-            "axisColorMode": "text",
-            "axisLabel": "",
-            "axisPlacement": "auto",
-            "barAlignment": 0,
-            "drawStyle": "bars",
-            "fillOpacity": 0,
-            "gradientMode": "none",
-            "hideFrom": {
-              "legend": false,
-              "tooltip": false,
-              "viz": false
-            },
-            "insertNulls": false,
-            "lineInterpolation": "linear",
-            "lineWidth": 1,
-            "pointSize": 5,
-            "scaleDistribution": {
-              "type": "linear"
-            },
-            "showPoints": "auto",
-            "spanNulls": false,
-            "stacking": {
-              "group": "A",
-              "mode": "normal"
-            },
-            "thresholdsStyle": {
-              "mode": "off"
-            }
-          },
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": null
-              },
-              {
-                "color": "red",
-                "value": 80
-              }
-            ]
-          },
-          "unit": "s"
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 8,
-        "w": 6,
-        "x": 18,
-        "y": 59
-      },
-      "id": 14699,
-      "options": {
-        "legend": {
-          "calcs": [],
-          "displayMode": "list",
-          "placement": "bottom",
-          "showLegend": true
-        },
-        "tooltip": {
-          "mode": "single",
-          "sort": "none"
-        }
-      },
-      "pluginVersion": "9.4.7",
-      "targets": [
-        {
-          "alias": "",
-          "bucketAggs": [
-            {
-              "field": "timestamp",
-              "id": "2",
-              "settings": {
-                "interval": "auto"
-              },
-              "type": "date_histogram"
-            }
-          ],
-          "datasource": {
-            "type": "prometheus",
-            "uid": "${datasource}"
-          },
-          "editorMode": "code",
-          "exemplar": true,
-          "expr": "sum by (stage) (increase(server_state_keeper_l1_batch_sealed_time_stage_sum{namespace=~\"$namespace|\", pod=~\"$pod|\"}[$__rate_interval]) / increase(server_state_keeper_l1_batch_sealed_time_stage_count{namespace=~\"$namespace|\", pod=~\"$pod|\"}[$__rate_interval]))",
-          "interval": "",
-          "legendFormat": "{{stage}}",
-          "metrics": [
-            {
-              "id": "1",
-              "type": "count"
-            }
-          ],
-          "query": "",
-          "range": true,
-          "refId": "A",
-          "timeField": "timestamp"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "${datasource}"
-          },
-          "editorMode": "code",
-          "expr": "sum by (stage) (increase(server_state_keeper_wait_for_prev_hash_time_sum{namespace=~\"$namespace|\", pod=~\"$pod|\"}[$__rate_interval]) / increase(server_state_keeper_wait_for_prev_hash_time_count{namespace=~\"$namespace|\", pod=~\"$pod|\"}[$__rate_interval]))",
-          "hide": false,
-          "instant": false,
-          "legendFormat": "waiting_for_tree",
-          "range": true,
-          "refId": "B"
-        }
-      ],
-      "title": "L1 batch Seal Stages Time - absolute",
-      "type": "timeseries"
-    },
-    {
-      "datasource": {
-        "type": "prometheus",
-        "uid": "${datasource}"
-      },
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "palette-classic"
-          },
-          "custom": {
-            "axisBorderShow": false,
-            "axisCenteredZero": false,
-            "axisColorMode": "text",
-            "axisLabel": "seconds",
-            "axisPlacement": "auto",
-            "barAlignment": 0,
-            "drawStyle": "line",
-            "fillOpacity": 0,
-            "gradientMode": "none",
-            "hideFrom": {
-              "legend": false,
-              "tooltip": false,
-              "viz": false
-            },
-            "insertNulls": false,
-            "lineInterpolation": "linear",
-            "lineWidth": 1,
-            "pointSize": 5,
-            "scaleDistribution": {
-              "type": "linear"
-            },
-            "showPoints": "auto",
-            "spanNulls": false,
-            "stacking": {
-              "group": "A",
-              "mode": "none"
-            },
-            "thresholdsStyle": {
-              "mode": "off"
-            }
-          },
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": null
-              },
-              {
-                "color": "red",
-                "value": 80
-              }
-            ]
-          },
-          "unit": "s"
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 8,
-        "w": 6,
-        "x": 0,
-        "y": 67
-      },
-      "id": 12828,
-      "options": {
-        "legend": {
-          "calcs": [],
-          "displayMode": "list",
-          "placement": "bottom",
-          "showLegend": true
-        },
-        "tooltip": {
-          "mode": "single",
-          "sort": "none"
-        }
-      },
-      "targets": [
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "${datasource}"
-          },
-          "editorMode": "code",
-          "expr": "avg_over_time(avg by (pod) (rate(server_state_keeper_l1_batch_seal_delta_sum{namespace=~\"$namespace|\", pod=~\"$pod|\"}[$__rate_interval]) / rate(server_state_keeper_l1_batch_seal_delta_count{namespace=~\"$namespace|\", pod=~\"$pod|\"}[$__rate_interval]))[$aggr:])",
-          "legendFormat": "average-{{pod}}",
-          "range": true,
-          "refId": "A"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "${datasource}"
-          },
-          "editorMode": "code",
-          "expr": "avg_over_time(histogram_quantile(0.5, sum by(pod, le) (rate(server_state_keeper_l1_batch_seal_delta_bucket{namespace=~\"$namespace|\", pod=~\"$pod|\"}[$__rate_interval])))[$aggr:])",
-          "hide": false,
-          "legendFormat": "0.5-{{pod}}",
-          "range": true,
-          "refId": "B"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "${datasource}"
-          },
-          "editorMode": "code",
-          "expr": "avg_over_time(histogram_quantile(0.99, sum by(pod, le) (rate(server_state_keeper_l1_batch_seal_delta_bucket{namespace=~\"$namespace|\", pod=~\"$pod|\"}[$__rate_interval])))[$aggr:])",
-          "hide": false,
-          "legendFormat": "0.99-{{pod}}",
-          "range": true,
-          "refId": "C"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "${datasource}"
-          },
-          "editorMode": "code",
-          "expr": "avg_over_time(histogram_quantile(0.95, sum by(pod, le) (rate(server_state_keeper_l1_batch_seal_delta_bucket{namespace=~\"$namespace|\", pod=~\"$pod|\"}[$__rate_interval])))[$aggr:])",
-          "hide": false,
-          "legendFormat": "0.95-{{pod}}",
-          "range": true,
-          "refId": "D"
-        }
-      ],
-      "title": "L1 Batch Interval",
-      "type": "timeseries"
-    },
-    {
-      "datasource": {
-        "type": "prometheus",
-        "uid": "${datasource}"
-      },
-      "fieldConfig": {
-        "defaults": {
-          "custom": {
-            "hideFrom": {
-              "legend": false,
-              "tooltip": false,
-              "viz": false
-            },
-            "scaleDistribution": {
-              "type": "linear"
-            }
-          }
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 8,
-        "w": 6,
-        "x": 6,
-        "y": 67
-      },
-      "id": 13755,
-      "options": {
-        "calculate": false,
-        "cellGap": 1,
-        "color": {
-          "exponent": 0.5,
-          "fill": "dark-orange",
-          "mode": "scheme",
-          "reverse": false,
-          "scale": "exponential",
-          "scheme": "Greens",
-          "steps": 128
-        },
-        "exemplars": {
-          "color": "rgba(255,0,255,0.7)"
-        },
-        "filterValues": {
-          "le": 1e-09
-        },
-        "legend": {
-          "show": true
-        },
-        "rowsFrame": {
-          "layout": "le"
-        },
-        "tooltip": {
-          "mode": "single",
-          "showColorScale": false,
-          "yHistogram": false
-        },
-        "yAxis": {
-          "axisPlacement": "left",
-          "reverse": false,
-          "unit": "s"
-        }
-      },
-      "pluginVersion": "10.4.2",
-      "targets": [
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "${datasource}"
-          },
-          "editorMode": "code",
-          "expr": "sum(rate(server_state_keeper_l1_batch_seal_delta_bucket{namespace=~\"$namespace|\",pod=~\"$pod|\"}[$__rate_interval])) by (le)",
-          "format": "heatmap",
-          "hide": false,
-          "legendFormat": "{{le}}",
-          "range": true,
-          "refId": "A"
-        }
-      ],
-      "title": "L1 batch Interval",
-      "type": "heatmap"
-    },
-    {
-      "datasource": {
-        "type": "prometheus",
-        "uid": "${datasource}"
-      },
       "description": "Time passed while state keeper is waiting for the tree to compute the previous block root hash - it's needed to start the execution of the next l1 batch",
       "fieldConfig": {
         "defaults": {
@@ -3848,7 +3640,7 @@
               "options": {
                 "mode": "exclude",
                 "names": [
-                  "external-node-moby-0"
+                  "external-node-0"
                 ],
                 "prefix": "All except:",
                 "readOnly": true
@@ -3871,7 +3663,7 @@
         "h": 8,
         "w": 6,
         "x": 12,
-        "y": 67
+        "y": 92
       },
       "id": 10998,
       "options": {
@@ -3992,7 +3784,7 @@
         "h": 8,
         "w": 6,
         "x": 18,
-        "y": 67
+        "y": 92
       },
       "id": 10818,
       "options": {
@@ -4049,12 +3841,224 @@
       "type": "timeseries"
     },
     {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${datasource}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "seconds",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "s"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 6,
+        "x": 0,
+        "y": 100
+      },
+      "id": 12828,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${datasource}"
+          },
+          "editorMode": "code",
+          "expr": "avg_over_time(avg by (pod) (rate(server_state_keeper_l1_batch_seal_delta_sum{namespace=~\"$namespace|\", pod=~\"$pod|\"}[$__rate_interval]) / rate(server_state_keeper_l1_batch_seal_delta_count{namespace=~\"$namespace|\", pod=~\"$pod|\"}[$__rate_interval]))[$aggr:])",
+          "legendFormat": "average-{{pod}}",
+          "range": true,
+          "refId": "A"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${datasource}"
+          },
+          "editorMode": "code",
+          "expr": "avg_over_time(histogram_quantile(0.5, sum by(pod, le) (rate(server_state_keeper_l1_batch_seal_delta_bucket{namespace=~\"$namespace|\", pod=~\"$pod|\"}[$__rate_interval])))[$aggr:])",
+          "hide": false,
+          "legendFormat": "0.5-{{pod}}",
+          "range": true,
+          "refId": "B"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${datasource}"
+          },
+          "editorMode": "code",
+          "expr": "avg_over_time(histogram_quantile(0.99, sum by(pod, le) (rate(server_state_keeper_l1_batch_seal_delta_bucket{namespace=~\"$namespace|\", pod=~\"$pod|\"}[$__rate_interval])))[$aggr:])",
+          "hide": false,
+          "legendFormat": "0.99-{{pod}}",
+          "range": true,
+          "refId": "C"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${datasource}"
+          },
+          "editorMode": "code",
+          "expr": "avg_over_time(histogram_quantile(0.95, sum by(pod, le) (rate(server_state_keeper_l1_batch_seal_delta_bucket{namespace=~\"$namespace|\", pod=~\"$pod|\"}[$__rate_interval])))[$aggr:])",
+          "hide": false,
+          "legendFormat": "0.95-{{pod}}",
+          "range": true,
+          "refId": "D"
+        }
+      ],
+      "title": "L1 Batch Interval",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${datasource}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "custom": {
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "scaleDistribution": {
+              "type": "linear"
+            }
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 6,
+        "x": 6,
+        "y": 100
+      },
+      "id": 13755,
+      "options": {
+        "calculate": false,
+        "cellGap": 1,
+        "color": {
+          "exponent": 0.5,
+          "fill": "dark-orange",
+          "mode": "scheme",
+          "reverse": false,
+          "scale": "exponential",
+          "scheme": "Greens",
+          "steps": 128
+        },
+        "exemplars": {
+          "color": "rgba(255,0,255,0.7)"
+        },
+        "filterValues": {
+          "le": 1e-09
+        },
+        "legend": {
+          "show": true
+        },
+        "rowsFrame": {
+          "layout": "le"
+        },
+        "tooltip": {
+          "mode": "single",
+          "showColorScale": false,
+          "yHistogram": false
+        },
+        "yAxis": {
+          "axisPlacement": "left",
+          "reverse": false,
+          "unit": "s"
+        }
+      },
+      "pluginVersion": "10.4.2",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${datasource}"
+          },
+          "editorMode": "code",
+          "expr": "sum(rate(server_state_keeper_l1_batch_seal_delta_bucket{namespace=~\"$namespace|\",pod=~\"$pod|\"}[$__rate_interval])) by (le)",
+          "format": "heatmap",
+          "hide": false,
+          "legendFormat": "{{le}}",
+          "range": true,
+          "refId": "A"
+        }
+      ],
+      "title": "L1 batch Interval",
+      "type": "heatmap"
+    },
+    {
       "collapsed": true,
       "gridPos": {
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 75
+        "y": 133
       },
       "id": 13361,
       "panels": [
@@ -4523,7 +4527,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 76
+        "y": 134
       },
       "id": 13950,
       "panels": [],
@@ -4578,7 +4582,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               },
               {
                 "color": "red",
@@ -4594,7 +4599,7 @@
         "h": 8,
         "w": 12,
         "x": 0,
-        "y": 77
+        "y": 135
       },
       "id": 13885,
       "options": {
@@ -4651,7 +4656,7 @@
         "h": 8,
         "w": 12,
         "x": 12,
-        "y": 77
+        "y": 135
       },
       "id": 14145,
       "options": {
@@ -4757,7 +4762,7 @@
         "h": 8,
         "w": 6,
         "x": 0,
-        "y": 85
+        "y": 143
       },
       "id": 14146,
       "options": {
@@ -4852,7 +4857,7 @@
         "h": 8,
         "w": 6,
         "x": 6,
-        "y": 85
+        "y": 143
       },
       "id": 14147,
       "options": {
@@ -4947,7 +4952,7 @@
         "h": 8,
         "w": 6,
         "x": 12,
-        "y": 85
+        "y": 143
       },
       "id": 14148,
       "options": {
@@ -5006,7 +5011,7 @@
         "h": 8,
         "w": 6,
         "x": 18,
-        "y": 85
+        "y": 143
       },
       "id": 14149,
       "options": {
@@ -5071,7 +5076,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 93
+        "y": 151
       },
       "id": 14214,
       "panels": [],
@@ -5141,7 +5146,7 @@
         "h": 8,
         "w": 8,
         "x": 0,
-        "y": 94
+        "y": 152
       },
       "id": 14279,
       "options": {
@@ -5236,7 +5241,7 @@
         "h": 8,
         "w": 8,
         "x": 8,
-        "y": 94
+        "y": 152
       },
       "id": 14344,
       "options": {
@@ -5331,7 +5336,7 @@
         "h": 8,
         "w": 8,
         "x": 16,
-        "y": 94
+        "y": 152
       },
       "id": 14409,
       "options": {
@@ -5369,7 +5374,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 102
+        "y": 160
       },
       "id": 11935,
       "panels": [
@@ -6165,7 +6170,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 106
+        "y": 164
       },
       "id": 11724,
       "panels": [
@@ -6536,7 +6541,6 @@
       "type": "row"
     }
   ],
-  "refresh": "",
   "revision": 1,
   "schemaVersion": 39,
   "tags": [
@@ -6728,6 +6732,6 @@
   "timezone": "",
   "title": "Era - sequencer",
   "uid": "CDTuChL4z",
-  "version": 194,
+  "version": 196,
   "weekStart": ""
 }
