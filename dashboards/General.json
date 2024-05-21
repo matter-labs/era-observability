@@ -173,92 +173,6 @@
         "type": "prometheus",
         "uid": "${datasource}"
       },
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "thresholds"
-          },
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": null
-              }
-            ]
-          },
-          "unit": "s"
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 8,
-        "w": 8,
-        "x": 6,
-        "y": 0
-      },
-      "id": 11028,
-      "options": {
-        "colorMode": "value",
-        "graphMode": "area",
-        "justifyMode": "auto",
-        "orientation": "auto",
-        "reduceOptions": {
-          "calcs": [
-            "lastNotNull"
-          ],
-          "fields": "",
-          "values": false
-        },
-        "showPercentChange": false,
-        "textMode": "auto",
-        "wideLayout": true
-      },
-      "pluginVersion": "10.4.2",
-      "targets": [
-        {
-          "alias": "",
-          "bucketAggs": [
-            {
-              "field": "timestamp",
-              "id": "2",
-              "settings": {
-                "interval": "auto"
-              },
-              "type": "date_histogram"
-            }
-          ],
-          "datasource": {
-            "type": "prometheus",
-            "uid": "${datasource}"
-          },
-          "editorMode": "code",
-          "exemplar": true,
-          "expr": "max by (stage) (server_blocks_state_block_eth_stage_latency{namespace=~\"$namespace\"})\n",
-          "format": "time_series",
-          "instant": false,
-          "interval": "",
-          "legendFormat": "__auto",
-          "metrics": [
-            {
-              "id": "1",
-              "type": "count"
-            }
-          ],
-          "query": "",
-          "refId": "A",
-          "timeField": "timestamp"
-        }
-      ],
-      "title": "L1 Batch Lag ",
-      "type": "stat"
-    },
-    {
-      "datasource": {
-        "type": "prometheus",
-        "uid": "${datasource}"
-      },
       "description": "L1 batch number per stage - from being `sealed` in `state_keeper` to `l1_mined_ExecuteBlocks` in `eth_sender`. Delay in proof l1 operation is commonly observed when there are issues with provers, while a delay in commit operation is indicative of problems with `eth_sender`",
       "fieldConfig": {
         "defaults": {
@@ -313,8 +227,8 @@
       },
       "gridPos": {
         "h": 8,
-        "w": 10,
-        "x": 14,
+        "w": 18,
+        "x": 6,
         "y": 0
       },
       "id": 63,
@@ -1144,6 +1058,6 @@
   "timezone": "",
   "title": "Era - general",
   "uid": "0Y8DUff4k",
-  "version": 94,
+  "version": 95,
   "weekStart": ""
 }
