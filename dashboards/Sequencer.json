@@ -192,7 +192,7 @@
           },
           "editorMode": "code",
           "exemplar": true,
-          "expr": "avg_over_time(\n  sum by (pod, stage) (\n    rate(server_processed_txs{pod=~\"$pod|\", namespace=~\"$namespace|\", stage=~\"mempool_added|state_keeper\"}[$__rate_interval])\n  )[$aggr:]\n)",
+          "expr": "avg_over_time(\n  sum by (pod, stage) (\n    rate(server_processed_txs{pod=~\"$pod|\", namespace=~\"$namespace|\", stage=~\"mempool_added|state_keeper\", label!=\"snapshot_recovery_test\"}[$__rate_interval])\n  )[$aggr:]\n)",
           "hide": false,
           "interval": "",
           "intervalFactor": 1,
@@ -214,7 +214,7 @@
             "uid": "${datasource}"
           },
           "editorMode": "code",
-          "expr": "avg_over_time(sum by (stage) (rate(server_processed_txs{pod=~\"server-v2-api.*|server-v2-ws-api.*\", namespace=~\"$namespace|\", stage=~\"mempool_added\"}[$__rate_interval]))[$aggr:])\n",
+          "expr": "avg_over_time(sum by (stage) (rate(server_processed_txs{pod=~\"server-v2-api.*|server-v2-ws-api.*\", namespace=~\"$namespace|\", stage=~\"mempool_added\", label!=\"snapshot_recovery_test\"}[$__rate_interval]))[$aggr:])\n",
           "hide": false,
           "legendFormat": "{{stage}}",
           "range": true,
@@ -1473,8 +1473,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green",
-                "value": null
+                "color": "green"
               },
               {
                 "color": "red",
@@ -1538,8 +1537,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green",
-                "value": null
+                "color": "green"
               },
               {
                 "color": "red",
@@ -1654,8 +1652,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green",
-                "value": null
+                "color": "green"
               },
               {
                 "color": "red",
@@ -1868,8 +1865,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green",
-                "value": null
+                "color": "green"
               },
               {
                 "color": "red",
@@ -1985,8 +1981,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green",
-                "value": null
+                "color": "green"
               },
               {
                 "color": "red",
@@ -2105,8 +2100,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green",
-                "value": null
+                "color": "green"
               },
               {
                 "color": "red",
@@ -2201,8 +2195,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green",
-                "value": null
+                "color": "green"
               },
               {
                 "color": "red",
@@ -2321,8 +2314,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green",
-                "value": null
+                "color": "green"
               },
               {
                 "color": "red",
@@ -2577,8 +2569,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green",
-                "value": null
+                "color": "green"
               },
               {
                 "color": "red",
@@ -2840,8 +2831,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green",
-                "value": null
+                "color": "green"
               },
               {
                 "color": "red",
@@ -2919,7 +2909,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 83
+        "y": 58
       },
       "id": 13300,
       "panels": [],
@@ -2976,8 +2966,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green",
-                "value": null
+                "color": "green"
               },
               {
                 "color": "red",
@@ -2992,7 +2981,7 @@
         "h": 8,
         "w": 6,
         "x": 0,
-        "y": 84
+        "y": 59
       },
       "id": 13820,
       "interval": "30s",
@@ -3107,8 +3096,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green",
-                "value": null
+                "color": "green"
               },
               {
                 "color": "red",
@@ -3124,7 +3112,7 @@
         "h": 8,
         "w": 18,
         "x": 6,
-        "y": 84
+        "y": 59
       },
       "id": 14699,
       "options": {
@@ -3242,8 +3230,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green",
-                "value": null
+                "color": "green"
               },
               {
                 "color": "red",
@@ -3258,7 +3245,7 @@
         "h": 8,
         "w": 6,
         "x": 0,
-        "y": 92
+        "y": 67
       },
       "id": 47,
       "options": {
@@ -3358,8 +3345,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green",
-                "value": null
+                "color": "green"
               },
               {
                 "color": "red",
@@ -3388,7 +3374,7 @@
         "h": 8,
         "w": 6,
         "x": 6,
-        "y": 92
+        "y": 67
       },
       "id": 81,
       "options": {
@@ -3621,8 +3607,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green",
-                "value": null
+                "color": "green"
               },
               {
                 "color": "red",
@@ -3663,7 +3648,7 @@
         "h": 8,
         "w": 6,
         "x": 12,
-        "y": 92
+        "y": 67
       },
       "id": 10998,
       "options": {
@@ -3767,8 +3752,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green",
-                "value": null
+                "color": "green"
               },
               {
                 "color": "red",
@@ -3784,7 +3768,7 @@
         "h": 8,
         "w": 6,
         "x": 18,
-        "y": 92
+        "y": 67
       },
       "id": 10818,
       "options": {
@@ -3887,8 +3871,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green",
-                "value": null
+                "color": "green"
               },
               {
                 "color": "red",
@@ -3904,7 +3887,7 @@
         "h": 8,
         "w": 6,
         "x": 0,
-        "y": 100
+        "y": 75
       },
       "id": 12828,
       "options": {
@@ -3995,7 +3978,7 @@
         "h": 8,
         "w": 6,
         "x": 6,
-        "y": 100
+        "y": 75
       },
       "id": 13755,
       "options": {
@@ -4058,7 +4041,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 133
+        "y": 83
       },
       "id": 13361,
       "panels": [
@@ -4527,7 +4510,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 134
+        "y": 84
       },
       "id": 13950,
       "panels": [],
@@ -4582,8 +4565,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green",
-                "value": null
+                "color": "green"
               },
               {
                 "color": "red",
@@ -4599,7 +4581,7 @@
         "h": 8,
         "w": 12,
         "x": 0,
-        "y": 135
+        "y": 85
       },
       "id": 13885,
       "options": {
@@ -4656,7 +4638,7 @@
         "h": 8,
         "w": 12,
         "x": 12,
-        "y": 135
+        "y": 85
       },
       "id": 14145,
       "options": {
@@ -4762,7 +4744,7 @@
         "h": 8,
         "w": 6,
         "x": 0,
-        "y": 143
+        "y": 93
       },
       "id": 14146,
       "options": {
@@ -4857,7 +4839,7 @@
         "h": 8,
         "w": 6,
         "x": 6,
-        "y": 143
+        "y": 93
       },
       "id": 14147,
       "options": {
@@ -4952,7 +4934,7 @@
         "h": 8,
         "w": 6,
         "x": 12,
-        "y": 143
+        "y": 93
       },
       "id": 14148,
       "options": {
@@ -5011,7 +4993,7 @@
         "h": 8,
         "w": 6,
         "x": 18,
-        "y": 143
+        "y": 93
       },
       "id": 14149,
       "options": {
@@ -5076,7 +5058,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 151
+        "y": 101
       },
       "id": 14214,
       "panels": [],
@@ -5146,7 +5128,7 @@
         "h": 8,
         "w": 8,
         "x": 0,
-        "y": 152
+        "y": 102
       },
       "id": 14279,
       "options": {
@@ -5241,7 +5223,7 @@
         "h": 8,
         "w": 8,
         "x": 8,
-        "y": 152
+        "y": 102
       },
       "id": 14344,
       "options": {
@@ -5336,7 +5318,7 @@
         "h": 8,
         "w": 8,
         "x": 16,
-        "y": 152
+        "y": 102
       },
       "id": 14409,
       "options": {
@@ -5374,7 +5356,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 160
+        "y": 110
       },
       "id": 11935,
       "panels": [
@@ -6170,7 +6152,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 164
+        "y": 114
       },
       "id": 11724,
       "panels": [
@@ -6732,6 +6714,6 @@
   "timezone": "",
   "title": "Era - sequencer",
   "uid": "CDTuChL4z",
-  "version": 196,
+  "version": 197,
   "weekStart": ""
 }
