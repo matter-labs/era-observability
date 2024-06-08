@@ -535,7 +535,7 @@
         "type": "prometheus",
         "uid": "${datasource}"
       },
-      "description": "Number of transactions rejected in State Keeper. They waste the Sequencer resources without paying fee, so high number of them is indicative of a bug or a DoS attack",
+      "description": "Number of transactions with execution results in State Keeper:\nRejected:\nThey waste the Sequencer resources without paying fee, so high number of them is indicative of a bug or a DoS attack\nReverted:\nSucceeded:",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -626,14 +626,14 @@
           },
           "editorMode": "code",
           "exemplar": false,
-          "expr": "sum(rate(server_state_keeper_rejected_transactions{namespace=~\"$namespace|\"}[$__rate_interval]))",
+          "expr": "sum(rate(server_state_keeper_tx_execution_result{namespace=~\"$namespace|\"}[$__rate_interval])) by (status)",
           "hide": false,
           "legendFormat": "__auto",
           "range": true,
           "refId": "B"
         }
       ],
-      "title": "Transactions rejected in State Keeper",
+      "title": "Transactions execution statuses in State Keeper",
       "type": "timeseries"
     },
     {
@@ -1058,6 +1058,6 @@
   "timezone": "",
   "title": "Era - general",
   "uid": "0Y8DUff4k",
-  "version": 97,
+  "version": 98,
   "weekStart": ""
 }
