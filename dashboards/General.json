@@ -841,7 +841,7 @@
             "uid": "${datasource}"
           },
           "editorMode": "code",
-          "expr": "avg(server_gas_adjuster_current_base_fee_per_gas{pod!=\"$exclude_pod\", namespace=~\"$namespace|\"})",
+          "expr": "avg(server_gas_adjuster_current_base_fee_per_gas{pod=~\"server-v2-eth-sender.*\", namespace=~\"$namespace|\"} != 0)",
           "hide": false,
           "legendFormat": "Current L1 base fee",
           "range": true,
@@ -853,7 +853,7 @@
             "uid": "${datasource}"
           },
           "editorMode": "code",
-          "expr": "avg(server_gas_adjuster_median_base_fee_per_gas{pod!=\"$exclude_pod\", namespace=~\"$namespace|\"})",
+          "expr": "avg(server_gas_adjuster_median_base_fee_per_gas{pod=~\"server-v2-eth-sender.*\", namespace=~\"$namespace|\"} != 0)",
           "hide": false,
           "legendFormat": "Median L1 base fee",
           "range": true,
@@ -866,7 +866,7 @@
           },
           "editorMode": "code",
           "exemplar": true,
-          "expr": "avg(sum(rate(server_eth_sender_used_base_fee_per_gas_sum{pod!=\"$exclude_pod\", namespace=~\"$namespace|\"}[$__rate_interval]))/sum(rate(server_eth_sender_used_base_fee_per_gas_count{pod!=\"$exclude_pod\", namespace=~\"$namespace|\"}[$__rate_interval])))",
+          "expr": "avg(sum(rate(server_eth_sender_used_base_fee_per_gas_sum{pod=~\"server-v2-eth-sender.*\", namespace=~\"$namespace|\"}[$__rate_interval]))/sum(rate(server_eth_sender_used_base_fee_per_gas_count{pod=~\"server-v2-eth-sender.*\", namespace=~\"$namespace|\"}[$__rate_interval])))",
           "interval": "",
           "legendFormat": "Last used base fee",
           "range": true,
@@ -878,7 +878,7 @@
             "uid": "${datasource}"
           },
           "editorMode": "code",
-          "expr": "avg(server_gas_adjuster_median_blob_base_fee_per_gas{pod!=\"$exclude_pod\", namespace=~\"$namespace|\"})",
+          "expr": "avg(server_gas_adjuster_median_blob_base_fee_per_gas{pod=~\"server-v2-eth-sender.*\", namespace=~\"$namespace|\"} != 0)",
           "hide": false,
           "interval": "",
           "legendFormat": "Median L1 blob base fee",
@@ -1058,6 +1058,6 @@
   "timezone": "",
   "title": "Era - general",
   "uid": "0Y8DUff4k",
-  "version": 98,
+  "version": 99,
   "weekStart": ""
 }
