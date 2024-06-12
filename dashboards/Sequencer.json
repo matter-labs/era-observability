@@ -1473,7 +1473,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               },
               {
                 "color": "red",
@@ -1537,7 +1538,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               },
               {
                 "color": "red",
@@ -6532,9 +6534,9 @@
     "list": [
       {
         "current": {
-          "selected": false,
+          "selected": true,
           "text": "vm-mainnet2",
-          "value": "vm-mainnet2"
+          "value": "ZSPSuya4k"
         },
         "hide": 0,
         "includeAll": false,
@@ -6605,14 +6607,12 @@
         "current": {
           "selected": true,
           "text": [
-            "apply_storage_logs",
             "insert_events",
             "insert_factory_deps",
             "insert_l2_to_l1_logs",
             "insert_storage_logs"
           ],
           "value": [
-            "apply_storage_logs",
             "insert_events",
             "insert_factory_deps",
             "insert_l2_to_l1_logs",
@@ -6660,6 +6660,11 @@
           },
           {
             "selected": false,
+            "text": "1h",
+            "value": "1h"
+          },
+          {
+            "selected": false,
             "text": "1d",
             "value": "1d"
           },
@@ -6678,10 +6683,10 @@
         "current": {
           "selected": true,
           "text": [
-            "All"
+            "server-v2-core-0"
           ],
           "value": [
-            "$__all"
+            "server-v2-core-0"
           ]
         },
         "datasource": {
@@ -6714,6 +6719,6 @@
   "timezone": "",
   "title": "Era - sequencer",
   "uid": "CDTuChL4z",
-  "version": 197,
+  "version": 198,
   "weekStart": ""
 }
