@@ -611,7 +611,7 @@
           "calcs": [],
           "displayMode": "list",
           "placement": "bottom",
-          "showLegend": false
+          "showLegend": true
         },
         "tooltip": {
           "mode": "multi",
@@ -1058,6 +1058,6 @@
   "timezone": "",
   "title": "Era - general",
   "uid": "0Y8DUff4k",
-  "version": 99,
+  "version": 100,
   "weekStart": ""
 }
