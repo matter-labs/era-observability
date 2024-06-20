@@ -3283,8 +3283,7 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green",
-                    "value": null
+                    "color": "green"
                   },
                   {
                     "color": "red",
@@ -3414,8 +3413,7 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green",
-                    "value": null
+                    "color": "green"
                   },
                   {
                     "color": "red",
@@ -3549,8 +3547,7 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green",
-                    "value": null
+                    "color": "green"
                   },
                   {
                     "color": "red",
@@ -3665,8 +3662,7 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green",
-                    "value": null
+                    "color": "green"
                   },
                   {
                     "color": "red",
@@ -3928,8 +3924,7 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green",
-                    "value": null
+                    "color": "green"
                   },
                   {
                     "color": "red",
@@ -4074,8 +4069,7 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green",
-                    "value": null
+                    "color": "green"
                   },
                   {
                     "color": "red",
@@ -4194,8 +4188,7 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green",
-                    "value": null
+                    "color": "green"
                   },
                   {
                     "color": "red",
@@ -4959,7 +4952,7 @@
             "uid": "${datasource}"
           },
           "editorMode": "code",
-          "expr": "max by (pod) (server_state_keeper_secondary_storage_lag { namespace=~\"$namespace|\" })",
+          "expr": "max by (pod) (server_state_keeper_secondary_storage_lag { pod=~\"$pod|\", namespace=~\"$namespace|\" })",
           "legendFormat": "{{pod}}",
           "range": true,
           "refId": "A"
@@ -5027,7 +5020,7 @@
             "uid": "${datasource}"
           },
           "editorMode": "code",
-          "expr": "avg by (cf) (rocksdb_live_data_size{namespace=\"$namespace\", db=\"state_keeper\"})",
+          "expr": "avg by (cf) (rocksdb_live_data_size{pod=\"$pod\", namespace=\"$namespace\", db=\"state_keeper\"})",
           "instant": false,
           "legendFormat": "__auto",
           "range": true,
@@ -5123,7 +5116,7 @@
             "uid": "${datasource}"
           },
           "editorMode": "code",
-          "expr": "avg by (cf) (rocksdb_total_sst_size{namespace=\"$namespace\", db=\"state_keeper\"})",
+          "expr": "avg by (cf) (rocksdb_total_sst_size{pod=\"$pod\", namespace=\"$namespace\", db=\"state_keeper\"})",
           "instant": false,
           "legendFormat": "__auto",
           "range": true,
@@ -5219,7 +5212,7 @@
             "uid": "${datasource}"
           },
           "editorMode": "code",
-          "expr": "avg by (cf) (rocksdb_index_and_filters_size{namespace=\"$namespace\", db=\"state_keeper\"})",
+          "expr": "avg by (cf) (rocksdb_index_and_filters_size{pod=\"$pod\", namespace=\"$namespace\", db=\"state_keeper\"})",
           "instant": false,
           "legendFormat": "__auto",
           "range": true,
@@ -5315,7 +5308,7 @@
             "uid": "${datasource}"
           },
           "editorMode": "code",
-          "expr": "avg by (db) (rocksdb_block_cache_size{namespace=\"$namespace\", db=\"state_keeper\"})",
+          "expr": "avg by (db) (rocksdb_block_cache_size{pod=\"$pod\", namespace=\"$namespace\", db=\"state_keeper\"})",
           "instant": false,
           "legendFormat": "__auto",
           "range": true,
@@ -5385,7 +5378,7 @@
             "uid": "${datasource}"
           },
           "editorMode": "code",
-          "expr": "avg by (level) (rocksdb_files_at_level{namespace=\"$namespace\", db=\"state_keeper\", cf=\"state\"})",
+          "expr": "avg by (level) (rocksdb_files_at_level{pod=\"$pod\", namespace=\"$namespace\", db=\"state_keeper\", cf=\"state\"})",
           "instant": false,
           "legendFormat": "__auto",
           "range": true,
@@ -6514,7 +6507,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 98
+        "y": 107
       },
       "id": 11724,
       "panels": [
@@ -6890,7 +6883,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 107
+        "y": 116
       },
       "id": 15115,
       "panels": [
@@ -6941,8 +6934,7 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green",
-                    "value": null
+                    "color": "green"
                   },
                   {
                     "color": "red",
@@ -7086,8 +7078,7 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green",
-                    "value": null
+                    "color": "green"
                   },
                   {
                     "color": "red",
@@ -7232,8 +7223,7 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green",
-                    "value": null
+                    "color": "green"
                   },
                   {
                     "color": "red",
@@ -7377,8 +7367,7 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green",
-                    "value": null
+                    "color": "green"
                   },
                   {
                     "color": "red",
@@ -7522,8 +7511,7 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green",
-                    "value": null
+                    "color": "green"
                   },
                   {
                     "color": "red",
@@ -7668,8 +7656,7 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green",
-                    "value": null
+                    "color": "green"
                   },
                   {
                     "color": "red",
@@ -7814,8 +7801,7 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green",
-                    "value": null
+                    "color": "green"
                   },
                   {
                     "color": "red",
@@ -7960,8 +7946,7 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green",
-                    "value": null
+                    "color": "green"
                   },
                   {
                     "color": "red",
@@ -8106,8 +8091,7 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green",
-                    "value": null
+                    "color": "green"
                   },
                   {
                     "color": "red",
@@ -8292,16 +8276,10 @@
         "current": {
           "selected": true,
           "text": [
-            "insert_events",
-            "insert_factory_deps",
-            "insert_l2_to_l1_logs",
-            "insert_storage_logs"
+            "All"
           ],
           "value": [
-            "insert_events",
-            "insert_factory_deps",
-            "insert_l2_to_l1_logs",
-            "insert_storage_logs"
+            "$__all"
           ]
         },
         "datasource": {
@@ -8404,6 +8382,6 @@
   "timezone": "",
   "title": "Era - sequencer",
   "uid": "CDTuChL4z",
-  "version": 200,
+  "version": 205,
   "weekStart": ""
 }
