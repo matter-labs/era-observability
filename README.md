@@ -1,6 +1,6 @@
 # Era Observability
 
-This repository contains JSON sources for Grafana dashboards that are used to observe `zkSync Era` as well as can be 
+This repository contains JSON sources for Grafana dashboards that are used to observe ZKsync Era as well as can be 
 used for any other ZK Stack chains / External Node deployment. The dashboards are updated automatically.
 
 ## How to use
