@@ -8,15 +8,34 @@ used for any other ZK Stack chains / External Node deployment. The dashboards ar
 This repository contains a Docker compose setup that is prepared to work with a local ZKsync deployment.
 All the ports are pre-configured to match the default port layout of local ZKsync configuration.
 
+The configuration is capable of collecting Prometheus metrics, Opentelemetry traces, and Opentelemetry logs.
+
 The setup can be launched via:
 
 ```
 docker compose up -d
 ```
 
+The grafana will be available at [http://localhost:3000](http://localhost:3000).
+
 Alternatively the dashboards can be imported as-is via the Grafana JSON importer. 
 
-> Note: some panels might be empty, depending on whether you are running a full Hyperchain or External Node.   
+> Note: some panels might be empty, depending on whether you are running a full Hyperchain or External Node.
+
+## Infrastructure overview
+
+The docker compose configures the following services:
+
+- Prometheus. Configured to scrape data from all the main ZKsync components. [Configuration](./etc/prometheus/prometheus.yml).
+- Pushgateway. Not used by default, and not recommended to use, but still configured. May be useful when working with one-shot jobs
+  locally.
+- Quickwit. Collects logs and traces. Works with default configuration.
+- Opentelemetry-collector. A "proxy" for collecting OTLP logs from ZKsync components before sending them to Quickwit.
+  See [configuration](./etc/opentelemetry-collector/config.yaml) for more details on why is it needed.
+- Jaeger-query. Acts as a Grafana datasource for traces, but also has the UI on [http://localhost:16686/](http://localhost:16686/).
+- Grafana. Configured with Prometheus (metrics), Jaeger (traces), and Quickwit (logs) datasources, and automatically loads
+  dashboards located in the [dashboards](./dashboards/) folder. [Configuration](./etc/grafana/).
+- Caddy. Acts as a reverse proxy for all the components. [Configuration](./etc/caddy/Caddyfile).
 
 ## Acknowledgments
 
