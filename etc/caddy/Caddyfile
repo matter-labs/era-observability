@@ -1,0 +1,47 @@
+:3000 {
+    reverse_proxy grafana:3000  
+}
+
+:7280 {
+    reverse_proxy quickwit:7280
+}
+
+:4317 {
+    reverse_proxy opentelemetry-collector:4317
+}
+
+:4318 {
+    reverse_proxy opentelemetry-collector:4318
+}
+
+:16686 {
+    reverse_proxy jaeger-query:16686
+}
+
+:8080 {
+    basicauth /* {
+        {$ADMIN_USER} {$ADMIN_PASSWORD_HASH}
+    }    
+    reverse_proxy cadvisor:8080
+}
+
+:9090 {
+    basicauth /* {
+        {$ADMIN_USER} {$ADMIN_PASSWORD_HASH}
+    }
+    reverse_proxy prometheus:9090
+}
+
+:9093 {
+    basicauth /* {
+        {$ADMIN_USER} {$ADMIN_PASSWORD_HASH}
+    }
+    reverse_proxy alertmanager:9093
+}
+
+:9091 {
+    basicauth /* {
+        {$ADMIN_USER} {$ADMIN_PASSWORD_HASH}
+    }    
+    reverse_proxy pushgateway:9091
+}
