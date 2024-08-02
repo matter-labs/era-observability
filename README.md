@@ -37,6 +37,26 @@ The docker compose configures the following services:
   dashboards located in the [dashboards](./dashboards/) folder. [Configuration](./etc/grafana/).
 - Caddy. Acts as a reverse proxy for all the components. [Configuration](./etc/caddy/Caddyfile).
 
+## ZKsync node setup
+
+With default configuration, ZKsync node would run the Prometheus exporter, but won't export logs or traces.
+For the exact steps to configure OTLP, refer to the ZKsync documentation, but with the env-based configs, you need to supply the following
+variables:
+
+```bash
+OPENTELEMETRY_LEVEL=info
+OTLP_ENDPOINT=http://127.0.0.1:7280/api/v1/otlp/v1/traces
+OTLP_LOGS_ENDPOINT=http://127.0.0.1:4318/v1/logs
+```
+
+Additionally, you may expose information about the running binary. This is optional; if not provided, default values will be used:
+
+```bash
+POD_NAME=server-0
+POD_NAMESPACE=local
+SERVICE_NAME=zksync-server
+```
+
 ## Acknowledgments
 
 The `docker-compose` setup and configuration in this repository are based on the awesome [dockprom](https://github.com/stefanprodan/dockprom),
