@@ -57,6 +57,42 @@ POD_NAMESPACE=local
 SERVICE_NAME=zksync-server
 ```
 
+Important: as of Aug 2024, Opentelemetry exporter is not configured for the external node. This will be fixed in the future, but meanwhile
+external nodes can only export metrics.
+
+## Accessing information
+
+This section covers accessing different kinds of information in grafana using local setup.
+
+### Grafana dashboards
+
+There are several pre-configured dashboards already. Most likely, it makes sense to reduce time range from 24h to 15m to check if it works.
+
+Any changes you do locally will also be saved locally. However, they are only persisted within the docker-compose volume.
+
+### Traces
+
+To access tracing information, open the "Explore" tab, and choose the "Jaeger" data source.
+
+Choose the service of interest, and operation name (corresponds to the span name provided either via `tracing::instrument` or manually created
+span in the code).
+
+You will see all the recorded traces within the chosen time period. All of them are clickable, and click opens the detailed trace view. Each
+span within the trace is clickable too, and may have attributes (e.g. `l1_batch` and events (logs)).
+
+If you configured `SERVICE_NAME`/`POD_NAME`/`POD_NAMESPACE` variables, you'll see them in the span attributes, and you can filter spans
+based on these attributes.
+
+![Tracing example](./static/jaeger_tracing.png)
+
+### Logs
+
+To access logs, open the "Explore" tab, and choose the "Quickwit" data source.
+
+See the [Quickwit query language](https://quickwit.io/docs/reference/query-language) for more details.
+
+![Logs example](./static/quickwit_logs.png)
+
 ## Acknowledgments
 
 The `docker-compose` setup and configuration in this repository are based on the awesome [dockprom](https://github.com/stefanprodan/dockprom),
