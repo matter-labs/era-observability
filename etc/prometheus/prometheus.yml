@@ -71,9 +71,3 @@ scrape_configs:
     honor_labels: true
     static_configs:
       - targets: ['host.docker.internal:7070']
-  
-  - job_name: 'zksync'
-    scrape_interval: '5s'
-    honor_labels: true
-    static_configs: 
-      - targets: ['host.docker.internal:3312']
