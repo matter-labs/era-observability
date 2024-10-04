@@ -28,7 +28,7 @@ scrape_configs:
     scrape_interval: 5s
     honor_labels: true
     static_configs:
-      - targets: ['host.docker.internal:3412']
+      - targets: ['host.docker.internal:3414']
 
   - job_name: 'zksync_contract_verifier'
     scrape_interval: 5s
