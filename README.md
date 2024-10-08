@@ -1,6 +1,6 @@
 # Era Observability
 
-This repository contains JSON sources for Grafana dashboards that are used to observe ZKsync Era as well as can be
+This repository contains JSON sources for Grafana dashboards that are used to observe ZKsync Era as well as can be 
 used for any other ZK Stack chains / External Node deployment. The dashboards are updated automatically.
 
 ## How to use
@@ -18,7 +18,7 @@ docker compose up -d
 
 The grafana will be available at [http://localhost:3000](http://localhost:3000).
 
-Alternatively the dashboards can be imported as-is via the Grafana JSON importer.
+Alternatively the dashboards can be imported as-is via the Grafana JSON importer. 
 
 > Note: some panels might be empty, depending on whether you are running a full Hyperchain or External Node.
 
@@ -66,6 +66,7 @@ This section covers accessing different kinds of information in grafana using lo
 
 ### Grafana dashboards
 
+
 There are several pre-configured dashboards by default. Most likely, it makes sense to reduce time range from 24h to 15m to check if it works.
 Additional sample dashboards are available in the `additional_dashboards` directory. To use one just add it to the `dashboard` directory.
 
@@ -101,9 +102,9 @@ which is licensed under [MIT License](https://github.com/stefanprodan/dockprom/b
 
 ## Dashboards
 
-- **General** - one pager high level overview of L1/L2 blockchains and L2 APIs;
-- **Sequencer** - detailed sequencer-related metrics.
-- **Prover** - metrics for prover infrastructure
+* **General** - one pager high level overview of L1/L2 blockchains and L2 APIs;
+* **Sequencer** - detailed sequencer-related metrics.
+* **Prover** - metrics for prover infrastructure
 
 ## License
 
