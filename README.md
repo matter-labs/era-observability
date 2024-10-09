@@ -66,7 +66,8 @@ This section covers accessing different kinds of information in grafana using lo
 
 ### Grafana dashboards
 
-There are several pre-configured dashboards already. Most likely, it makes sense to reduce time range from 24h to 15m to check if it works.
+There are several pre-configured dashboards by default. Most likely, it makes sense to reduce time range from 24h to 15m to check if it works.
+Additional sample dashboards are available in the `additional_dashboards` directory. To use one just add it to the `dashboard` directory.
 
 Any changes you do locally will also be saved locally. However, they are only persisted within the docker-compose volume.
 
