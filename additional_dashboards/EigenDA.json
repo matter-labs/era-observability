@@ -18,14 +18,16 @@
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
-  "id": 5,
+  "id": 1,
   "links": [
     {
       "asDropdown": false,
       "icon": "external link",
       "includeVars": false,
       "keepTime": false,
-      "tags": ["Era-Main"],
+      "tags": [
+        "Era-Main"
+      ],
       "targetBlank": false,
       "title": "",
       "tooltip": "",
@@ -37,7 +39,9 @@
       "icon": "external link",
       "includeVars": false,
       "keepTime": false,
-      "tags": ["Era"],
+      "tags": [
+        "Era"
+      ],
       "targetBlank": false,
       "title": "Other Era Dashboards",
       "tooltip": "",
@@ -121,7 +125,7 @@
       },
       "gridPos": {
         "h": 8,
-        "w": 5,
+        "w": 8,
         "x": 0,
         "y": 1
       },
@@ -217,8 +221,8 @@
       },
       "gridPos": {
         "h": 8,
-        "w": 5,
-        "x": 5,
+        "w": 8,
+        "x": 8,
         "y": 1
       },
       "id": 6,
@@ -314,8 +318,8 @@
       },
       "gridPos": {
         "h": 8,
-        "w": 4,
-        "x": 10,
+        "w": 8,
+        "x": 16,
         "y": 1
       },
       "id": 3,
@@ -348,103 +352,6 @@
         }
       ],
       "title": "Average blob size",
-      "type": "timeseries"
-    },
-    {
-      "datasource": {
-        "type": "prometheus",
-        "uid": "PBFA97CFB590B2093"
-      },
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "fixedColor": "purple",
-            "mode": "fixed"
-          },
-          "custom": {
-            "axisBorderShow": false,
-            "axisCenteredZero": false,
-            "axisColorMode": "text",
-            "axisLabel": "",
-            "axisPlacement": "auto",
-            "barAlignment": 0,
-            "drawStyle": "line",
-            "fillOpacity": 25,
-            "gradientMode": "opacity",
-            "hideFrom": {
-              "legend": false,
-              "tooltip": false,
-              "viz": false
-            },
-            "insertNulls": false,
-            "lineInterpolation": "linear",
-            "lineWidth": 1,
-            "pointSize": 5,
-            "scaleDistribution": {
-              "type": "linear"
-            },
-            "showPoints": "auto",
-            "spanNulls": false,
-            "stacking": {
-              "group": "A",
-              "mode": "none"
-            },
-            "thresholdsStyle": {
-              "mode": "off"
-            }
-          },
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": null
-              },
-              {
-                "color": "red",
-                "value": 80
-              }
-            ]
-          }
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 8,
-        "w": 10,
-        "x": 14,
-        "y": 1
-      },
-      "id": 2,
-      "options": {
-        "legend": {
-          "calcs": [],
-          "displayMode": "hidden",
-          "placement": "right",
-          "showLegend": false
-        },
-        "tooltip": {
-          "maxHeight": 600,
-          "mode": "single",
-          "sort": "none"
-        }
-      },
-      "targets": [
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "PBFA97CFB590B2093"
-          },
-          "editorMode": "code",
-          "expr": "server_da_dispatcher_blobs_pending_dispatch{}",
-          "instant": false,
-          "legendFormat": "pending blobs",
-          "range": true,
-          "refId": "A"
-        }
-      ],
-      "title": "Blobs pending dispatch",
       "type": "timeseries"
     },
     {
@@ -523,7 +430,9 @@
           "placement": "right",
           "showLegend": false
         },
-        "timezone": ["browser"],
+        "timezone": [
+          "browser"
+        ],
         "tooltip": {
           "maxHeight": 600,
           "mode": "single",
@@ -563,21 +472,21 @@
       "type": "timeseries"
     }
   ],
-  "refresh": "",
+  "refresh": "5s",
   "schemaVersion": 39,
   "tags": [],
   "templating": {
     "list": []
   },
   "time": {
-    "from": "2024-09-23T18:15:30.000Z",
-    "to": "2024-09-23T18:35:47.000Z"
+    "from": "now-15m",
+    "to": "now"
   },
   "timeRangeUpdatedDuringEditOrView": false,
   "timepicker": {},
   "timezone": "browser",
   "title": "EigenDA",
   "uid": "ddysm48qn6xvkd",
-  "version": 1,
+  "version": 2,
   "weekStart": ""
 }
