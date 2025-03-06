@@ -18,7 +18,7 @@
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
-  "id": 1,
+  "id": 8,
   "links": [
     {
       "asDropdown": false,
@@ -448,7 +448,7 @@
           },
           "editorMode": "code",
           "exemplar": false,
-          "expr": "server_da_dispatcher_blobs_included{}",
+          "expr": "server_da_dispatcher_last_dispatched_l1_batch{}",
           "instant": false,
           "legendFormat": "included blobs",
           "range": true,
@@ -460,7 +460,7 @@
             "uid": "PBFA97CFB590B2093"
           },
           "editorMode": "code",
-          "expr": "server_da_dispatcher_blobs_dispatched{}",
+          "expr": "server_da_dispatcher_last_included_l1_batch{}",
           "hide": false,
           "instant": false,
           "legendFormat": "dispatched blobs",
@@ -487,6 +487,6 @@
   "timezone": "browser",
   "title": "EigenDA",
   "uid": "ddysm48qn6xvkd",
-  "version": 2,
+  "version": 1,
   "weekStart": ""
 }
