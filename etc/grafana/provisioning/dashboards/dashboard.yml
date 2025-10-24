@@ -10,3 +10,4 @@ providers:
     allowUiUpdates: true
     options:
       path: /etc/era_dashboards
+      foldersFromFilesStructure: true
