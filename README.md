@@ -16,6 +16,8 @@ The setup can be launched via:
 docker compose up -d
 ```
 
+> Note: If you used to run `era-observability` a while ago, run `docker compose down --volumes` first
+
 The grafana will be available at [http://localhost:3000](http://localhost:3000).
 
 Alternatively the dashboards can be imported as-is via the Grafana JSON importer. 
